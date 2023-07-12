@@ -3,10 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{763C5BB4-3B80-429C-9707-86E2D6FFAA5E}"
+	ProjectSection(SolutionItems) = preProject
+		D:\03 - работа\12 - axxonsoft\AxxonSoft_C#_task_triangles.pdf = D:\03 - работа\12 - axxonsoft\AxxonSoft_C#_task_triangles.pdf
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Models", "Triangles.Models\Triangles.Models.csproj", "{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Contracts", "Triangles.Contracts\Triangles.Contracts.csproj", "{F344B283-29FF-4B12-81B4-75323E87EEFA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F344B283-29FF-4B12-81B4-75323E87EEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F344B283-29FF-4B12-81B4-75323E87EEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F344B283-29FF-4B12-81B4-75323E87EEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F344B283-29FF-4B12-81B4-75323E87EEFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
