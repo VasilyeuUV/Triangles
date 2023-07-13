@@ -8,13 +8,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		D:\03 - работа\12 - axxonsoft\AxxonSoft_C#_task_triangles.pdf = D:\03 - работа\12 - axxonsoft\AxxonSoft_C#_task_triangles.pdf
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Models", "Triangles.Models\Triangles.Models.csproj", "{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triangles.Models", "Triangles.Models\Triangles.Models.csproj", "{5E957CEB-6A87-4EFD-998C-DE1B1EFD0CA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Contracts", "Triangles.Contracts\Triangles.Contracts.csproj", "{F344B283-29FF-4B12-81B4-75323E87EEFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triangles.Contracts", "Triangles.Contracts\Triangles.Contracts.csproj", "{F344B283-29FF-4B12-81B4-75323E87EEFA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{61D17F6E-8719-4DBD-8D13-9E5F3B0AAD33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.WinFormsApp", "Triangles.WinFormsApp\Triangles.WinFormsApp.csproj", "{339535A9-59D7-44FD-9056-BE78399185C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triangles.WinFormsApp", "Triangles.WinFormsApp\Triangles.WinFormsApp.csproj", "{339535A9-59D7-44FD-9056-BE78399185C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.ViewModels", "Triangles.ViewModels\Triangles.ViewModels.csproj", "{8A90C14D-B8BE-415A-AE6F-BAA08D720462}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +36,10 @@ Global
 		{339535A9-59D7-44FD-9056-BE78399185C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{339535A9-59D7-44FD-9056-BE78399185C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{339535A9-59D7-44FD-9056-BE78399185C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
