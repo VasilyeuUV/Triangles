@@ -1,4 +1,5 @@
-﻿using Triangles.Models.Creators.GeometryCreators;
+﻿using Triangles.Models.ColorModels;
+using Triangles.Models.Creators.GeometryCreators;
 using Triangles.Models.Geometry.Triangles;
 using Triangles.Models.OtherModels;
 
@@ -13,6 +14,8 @@ namespace Triangles.ViewModels.MainWindowViewModels
 
         private IEnumerable<TriangleModel>? _triangles;         // - список треугольников
         private InputCoordinatesDataModel _inputData;           // - входные данные
+        private readonly AllowedColors _allowedColors;          // - диапазон разрешенных цветов
+
 
 
         /// <summary>
@@ -34,13 +37,20 @@ namespace Triangles.ViewModels.MainWindowViewModels
             set => _triangles = value; 
         }
 
+
         /// <summary>
         /// Входные данные
         /// </summary>
         public InputCoordinatesDataModel InputData 
         {
             get => _inputData; 
-            set => _inputData = value; 
+            set => Set(ref _inputData, value);
         }
+
+
+        /// <summary>
+        /// Диапазон разрешенных цветов
+        /// </summary>
+        public AllowedColors AllowedColors => _allowedColors;
     }
 }
