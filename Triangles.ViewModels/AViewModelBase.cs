@@ -93,7 +93,7 @@ namespace Triangles.ViewModels
                 return this;
             }
             // ПРИМЕНЕНИЕ:
-            // set => SetValue(ref Поле, valur)
+            // set => SetValue(ref Поле, value)
             //       .Then(v => OnPropertyChanged(nameof(Зависимое_от_Поля_Свойство)))
             //       .Then(...);
             // Зависимое_от_Поля_Свойство - то, которое нужно обновить при изменении значения Поля
