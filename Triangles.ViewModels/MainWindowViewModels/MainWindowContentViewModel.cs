@@ -10,12 +10,13 @@ namespace Triangles.ViewModels.MainWindowViewModels
     /// </summary>
     public class MainWindowContentViewModel : AViewModelBase
     {
-        private SquareableCreator _squareableCreator;           // - создатель площадных фигур
+        private SquareableCreator _squareableCreator;               // - создатель площадных фигур
 
-        private IEnumerable<TriangleModel>? _triangles;         // - список треугольников
-        private InputCoordinatesDataModel _inputData;           // - входные данные
-        private readonly AllowedColors _allowedColors;          // - диапазон разрешенных цветов
-
+        private IEnumerable<TriangleModel>? _triangles;             // - список треугольников
+        private InputCoordinatesDataModel _inputData;               // - входные данные
+        
+        private readonly AllowedColors _allowedColors;              // - диапазон разрешенных цветов
+        private readonly AllowedColors[] _selectedAllowedColors;    // - выбранные цвета
 
 
         /// <summary>
@@ -25,7 +26,6 @@ namespace Triangles.ViewModels.MainWindowViewModels
         {
             _squareableCreator = new SquareableCreator();
         }
-
 
 
         /// <summary>
@@ -52,5 +52,10 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// Диапазон разрешенных цветов
         /// </summary>
         public AllowedColors AllowedColors => _allowedColors;
+
+        /// <summary>
+        /// Выбранные цвета
+        /// </summary>
+        public AllowedColors[] SelectedAllowedColors => _selectedAllowedColors;
     }
 }

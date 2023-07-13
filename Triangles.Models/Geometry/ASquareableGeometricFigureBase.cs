@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using Triangles.Contracts.Geometry;
 
 namespace Triangles.Models.Geometry
@@ -17,6 +18,12 @@ namespace Triangles.Models.Geometry
             _s = GetSquare();
         }
 
+
+        /// <summary>
+        /// Уровень вложенности фигуры в другие фигуры
+        /// </summary>
+        [Range(0, int.MaxValue)]
+        public int NestingLevel { get; set; }
 
 
         //############################################################################################################
