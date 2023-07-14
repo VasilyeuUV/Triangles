@@ -1,3 +1,5 @@
+using Triangles.ViewModels.MainWindowViewModels;
+
 namespace Triangles.WinFormsApp
 {
     public partial class MainForm : Form
@@ -5,6 +7,31 @@ namespace Triangles.WinFormsApp
         public MainForm()
         {
             InitializeComponent();
+
+            var dataSource = new MainWindowViewModel();
+
+            this.DataContext = dataSource;
+            this.lblMessage.DataBindings.Add(
+                new Binding(
+                    nameof(this.lblMessage.Text),
+                    dataSource,
+                    nameof(dataSource.NestingLevelMax),
+                    false,
+                    DataSourceUpdateMode.OnPropertyChanged
+                    )
+                );
+            int count = 1;
+            this.menuItemLoad.Click += (o, e) => dataSource.NestingLevelMax = $"{++count}";
+
+
+            this.pictureBoxMain.BackColor = Color.FromArgb(205, 255, 204);
+            this.pictureBoxMain.DataBindings.Add(
+                new Binding(
+                    nameof(this.pictureBoxMain.Image),
+                    dataSource,
+                    nameof(dataSource.Bitmap)
+                    )
+                );
         }
 
 
@@ -19,6 +46,18 @@ namespace Triangles.WinFormsApp
         private void Form1_Load(object sender, EventArgs e)
         {
 
+
+        }
+
+
+        /// <summary>
+        /// Закрыть приложение
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void menuItemClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         #endregion // Events
