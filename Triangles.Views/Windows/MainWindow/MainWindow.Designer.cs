@@ -1,6 +1,6 @@
-﻿namespace Triangles.WinFormsApp
+﻿namespace Triangles.Views.Windows.MainWindow
 {
-    partial class MainForm
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.

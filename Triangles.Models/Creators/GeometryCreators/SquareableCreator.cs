@@ -9,18 +9,26 @@ namespace Triangles.Models.Creators.GeometryCreators
     public class SquareableCreator : AGeometric2dCreatorBase
     {
 
+
         //####################################################################################################
         #region AGeometric2dCreatorBase
 
-        public override ASquareableGeometricFigureBase Create2dFigure(IEnumerable<int> coords)
+        //public override ASquareableGeometricFigureBase Create2dFigure(IEnumerable<int> coords)
+        //    => coords.Count() switch
+        //    {
+        //        3 => new TriangleModel(coords),
+        //        _ => throw new InvalidDataException("At the specified coordinates, the squreable figure cannot be built") 
+        //    };
+
+        public override T Create<T>(IEnumerable<int> coords)
             => coords.Count() switch
             {
                 3 => new TriangleModel(coords),
-                _ => throw new InvalidDataException("At the specified coordinates, the squreable figure cannot be built") 
+                _ => throw new InvalidDataException("At the specified coordinates, the squreable figure cannot be built")
             };
 
 
-        #endregion // AGeometric2dCreatorBase
 
+        #endregion // AGeometric2dCreatorBase
     }
 }

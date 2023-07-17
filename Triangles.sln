@@ -16,7 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triangles.WinFormsApp", "Triangles.WinFormsApp\Triangles.WinFormsApp.csproj", "{339535A9-59D7-44FD-9056-BE78399185C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.ViewModels", "Triangles.ViewModels\Triangles.ViewModels.csproj", "{8A90C14D-B8BE-415A-AE6F-BAA08D720462}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Triangles.ViewModels", "Triangles.ViewModels\Triangles.ViewModels.csproj", "{8A90C14D-B8BE-415A-AE6F-BAA08D720462}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles", "Triangles\Triangles.csproj", "{14ECF4A0-9F5F-4E96-B770-D08347B04CA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Bootstrapper", "Triangles.Bootstrapper\Triangles.Bootstrapper.csproj", "{FE181817-81F7-4144-9739-DCB783F9E28C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Triangles.Views", "Triangles.Views\Triangles.Views.csproj", "{3FF0F7B6-5F0B-4408-9B73-33ED6DCC4813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +46,18 @@ Global
 		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A90C14D-B8BE-415A-AE6F-BAA08D720462}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14ECF4A0-9F5F-4E96-B770-D08347B04CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14ECF4A0-9F5F-4E96-B770-D08347B04CA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14ECF4A0-9F5F-4E96-B770-D08347B04CA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14ECF4A0-9F5F-4E96-B770-D08347B04CA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE181817-81F7-4144-9739-DCB783F9E28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE181817-81F7-4144-9739-DCB783F9E28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE181817-81F7-4144-9739-DCB783F9E28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE181817-81F7-4144-9739-DCB783F9E28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FF0F7B6-5F0B-4408-9B73-33ED6DCC4813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FF0F7B6-5F0B-4408-9B73-33ED6DCC4813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FF0F7B6-5F0B-4408-9B73-33ED6DCC4813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FF0F7B6-5F0B-4408-9B73-33ED6DCC4813}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
