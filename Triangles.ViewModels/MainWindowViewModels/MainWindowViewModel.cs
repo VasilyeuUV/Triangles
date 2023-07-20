@@ -35,5 +35,10 @@ namespace Triangles.ViewModels.MainWindowViewModels
                 return _bitmap;
             }
         }
+
+
+
+
+
     }
 }
