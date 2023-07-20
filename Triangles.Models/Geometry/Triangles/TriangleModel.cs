@@ -5,7 +5,7 @@ namespace Triangles.Models.Geometry.Triangles
     /// <summary>
     /// Модель треугольника
     /// </summary>
-    public class TriangleModel : ASquareableGeometricFigureBase
+    public class TriangleModel : APolygon 
     {
         private const int _APEXESCOUNT = 3;                             // - количество вершин фигуры
 

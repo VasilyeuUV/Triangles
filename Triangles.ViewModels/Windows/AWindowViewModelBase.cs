@@ -20,59 +20,59 @@ namespace Triangles.ViewModels.Windows
         }
 
 
-        ////############################################################################################################
-        //#region Свойства окна
+        //############################################################################################################
+        #region Свойства окна
 
-        ///// <summary>
-        ///// Координата окна по горизонтали
-        ///// </summary>
-        //public double Left
-        //{
-        //    get => _windowMementoWrapper.Left;
-        //    set => _windowMementoWrapper.Left = value;
-        //}
-
-
-        ///// <summary>
-        ///// Координата окна по вертикали
-        ///// </summary>
-        //public double Top
-        //{
-        //    get => _windowMementoWrapper.Top;
-        //    set => _windowMementoWrapper.Top = value;
-        //}
+        /// <summary>
+        /// Координата окна по горизонтали
+        /// </summary>
+        public double Left
+        {
+            get => _windowMementoWrapper.Left;
+            set => _windowMementoWrapper.Left = value;
+        }
 
 
-        ///// <summary>
-        ///// Ширина окна
-        ///// </summary>
-        //public double Width
-        //{
-        //    get => _windowMementoWrapper.Width;
-        //    set => _windowMementoWrapper.Width = value;
-        //}
+        /// <summary>
+        /// Координата окна по вертикали
+        /// </summary>
+        public double Top
+        {
+            get => _windowMementoWrapper.Top;
+            set => _windowMementoWrapper.Top = value;
+        }
 
 
-        ///// <summary>
-        ///// Высота окна
-        ///// </summary>
-        //public double Height
-        //{
-        //    get => _windowMementoWrapper.Height;
-        //    set => _windowMementoWrapper.Height = value;
-        //}
+        /// <summary>
+        /// Ширина окна
+        /// </summary>
+        public double Width
+        {
+            get => _windowMementoWrapper.Width;
+            set => _windowMementoWrapper.Width = value;
+        }
 
 
-        ///// <summary>
-        ///// Флаг состояния окна развёрнутого в полный экран (true)
-        ///// </summary>
-        //public bool IsMaximized
-        //{
-        //    get => _windowMementoWrapper.IsMaximized;
-        //    set => _windowMementoWrapper.IsMaximized = value;
-        //}
+        /// <summary>
+        /// Высота окна
+        /// </summary>
+        public double Height
+        {
+            get => _windowMementoWrapper.Height;
+            set => _windowMementoWrapper.Height = value;
+        }
 
-        //#endregion // Свойства окна
+
+        /// <summary>
+        /// Флаг состояния окна развёрнутого в полный экран (true)
+        /// </summary>
+        public bool IsMaximized
+        {
+            get => _windowMementoWrapper.IsMaximized;
+            set => _windowMementoWrapper.IsMaximized = value;
+        }
+
+        #endregion // Свойства окна
 
 
         //############################################################################################################

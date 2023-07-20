@@ -19,7 +19,10 @@ namespace Triangles.Bootstrapper
         private IMainWindowViewModel? _mainWindowViewModel;             // - вьюмодель главного окна приложения
 
 
-
+        /// <summary>
+        /// CTOR
+        /// </summary>
+        /// <param name="lifetimeScope"></param>
         public Application(ILifetimeScope lifetimeScope)
         {
             Logger.Info("Created");

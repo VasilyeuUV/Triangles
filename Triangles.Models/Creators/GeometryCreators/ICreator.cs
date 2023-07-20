@@ -1,4 +1,6 @@
-﻿namespace Triangles.Contracts.Creators
+﻿using Triangles.Models.Geometry;
+
+namespace Triangles.Models.Creators.GeometryCreators
 {
 
     /// <summary>
@@ -14,6 +16,6 @@
         /// <param name="coords"></param>
         /// <returns></returns>
         T Create<T>(IEnumerable<int> coords)
-            where T : new();
+            where T : AGeometricFigure2DBase;
     }
 }

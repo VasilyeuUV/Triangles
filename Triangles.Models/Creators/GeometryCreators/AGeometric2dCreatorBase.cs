@@ -1,4 +1,4 @@
-﻿using Triangles.Contracts.Creators;
+﻿using Triangles.Models.Geometry;
 
 namespace Triangles.Models.Creators.GeometryCreators
 {
@@ -18,7 +18,7 @@ namespace Triangles.Models.Creators.GeometryCreators
         /// <returns></returns>
 
         public abstract T Create<T>(IEnumerable<int> coords)
-            where T : class;
+            where T : AGeometricFigure2DBase;
 
         #endregion // IGeometryCreator
     }

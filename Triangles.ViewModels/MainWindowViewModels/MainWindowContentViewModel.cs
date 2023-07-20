@@ -10,7 +10,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
     /// </summary>
     public class MainWindowContentViewModel : AViewModelBase
     {
-        private SquareableCreator _squareableCreator;                   // - создатель площадных фигур
+        private PolygonCreator _squareableCreator;                   // - создатель площадных фигур
 
         private IEnumerable<TriangleModel>? _triangles;                 // - список треугольников
         private InputCoordinatesDataModel? _inputData;                  // - входные данные
@@ -24,7 +24,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// </summary>
         public MainWindowContentViewModel()
         {
-            _squareableCreator = new SquareableCreator();
+            _squareableCreator = new PolygonCreator();
         }
 
 

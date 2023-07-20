@@ -6,7 +6,7 @@ namespace Triangles.Models.Creators.GeometryCreators
     /// <summary>
     /// Создатель площадных геометрических фигур
     /// </summary>
-    public class SquareableCreator : AGeometric2dCreatorBase
+    public class PolygonCreator : AGeometric2dCreatorBase
     {
 
 
@@ -21,11 +21,15 @@ namespace Triangles.Models.Creators.GeometryCreators
         //    };
 
         public override T Create<T>(IEnumerable<int> coords)
-            => coords.Count() switch
+        {
+            var polygon = coords.Count() switch
             {
                 3 => new TriangleModel(coords),
                 _ => throw new InvalidDataException("At the specified coordinates, the squreable figure cannot be built")
             };
+
+            return (T)(AGeometricFigure2DBase)polygon;
+        }
 
 
 

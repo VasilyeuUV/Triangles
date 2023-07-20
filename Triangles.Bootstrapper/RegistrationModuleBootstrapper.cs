@@ -26,16 +26,16 @@ namespace Triangles.Bootstrapper
                 .As(typeof(IFactory<>))                     // - интерфейсная часть
                 .SingleInstance();
 
-            // - Создание и регистрации фабрики Клиента для работы с RestApi (для использования http-запросов)
-            builder.Register(_ =>
-            {
-                var serviceProvider = new ServiceCollection()
-                    .AddHttpClient()
-                    .BuildServiceProvider();
-                var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
-                return httpClientFactory;
-            })
-                .SingleInstance();
+            //// - Создание и регистрации фабрики Клиента для работы с RestApi (для использования http-запросов)
+            //builder.Register(_ =>
+            //{
+            //    var serviceProvider = new ServiceCollection()
+            //        .AddHttpClient()
+            //        .BuildServiceProvider();
+            //    var httpClientFactory = serviceProvider.GetRequiredService<IHttpClientFactory>();
+            //    return httpClientFactory;
+            //})
+            //    .SingleInstance();
         }
 
         #endregion // Module

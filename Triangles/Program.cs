@@ -20,7 +20,7 @@ namespace Triangles
             _bootstrapper = new ApplicationBootstrapper();
 
             // Add the event handler for handling UI thread exceptions to the event.
-            Application.ThreadException += new ThreadExceptionEventHandler(ErrorHandlerForm.Form1_UIThreadException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Form_UIThreadException);
 
             // Set the unhandled exception mode to force all Windows Forms errors
             // to go through our handler.
@@ -33,6 +33,10 @@ namespace Triangles
             Application.Run(MainForm.Run());
         }
 
+        private static void Form_UIThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ToString());
+        }
 
         private static void OnUnhandledExceptionRaised(object sender, UnhandledExceptionEventArgs e)
         {
