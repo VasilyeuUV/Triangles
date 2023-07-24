@@ -6,22 +6,39 @@
 public class AllowedColors
 {
 
+    public AllowedColors()
+    {
+        LightestHsb = new HsbColorModel
+        {
+            Hue = 90,
+            Saturation = 0.3f,
+            Brightness = 1f,
+        };
+        DarkestHsb = new HsbColorModel
+        {
+            Hue = 150,
+            Saturation = 1f,
+            Brightness = 0.3f,
+        };
+    }
+
+
 
     /// <summary>
     /// Самый светлый цвет
     /// </summary>
-    public HsbColorModel? LightestColor { get; set; }
+    public HsbColorModel? LightestHsb { get; set; }
 
 
     /// <summary>
     /// Самый тёмный цвет
     /// </summary>
-    public HsbColorModel? DarkestColor { get; set; }
+    public HsbColorModel? DarkestHsb { get; set; }
+
 
     /// <summary>
     /// Цвета, которые допустимо использовать
     /// </summary>
-    public HsbColorModel[]? UsedColors { get; set; }
-
+    public Color[]? UsedColors { get; set; }
 
 }

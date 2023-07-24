@@ -42,7 +42,11 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// <summary>
         /// Допустимые к использованию цвета
         /// </summary>
-        public AllowedColors? AllowedColors => _allowedColors;
+        public AllowedColors? AllowedColors
+        {
+            get => _allowedColors;
+            set => Set(ref _allowedColors, value);
+        }
 
 
 

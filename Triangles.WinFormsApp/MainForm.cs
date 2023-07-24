@@ -1,4 +1,5 @@
 using Triangles.ViewModels.MainWindowViewModels;
+using Triangles.WinFormsApp.Models.Extensions;
 using Triangles.WinFormsApp.Properties;
 
 namespace Triangles.WinFormsApp
@@ -47,7 +48,7 @@ namespace Triangles.WinFormsApp
                 );
 
 
-            this.pictureBoxMain.BackColor = _dataSource.AllowedColors.LightestColor;
+            this.pictureBoxMain.BackColor = _dataSource.AllowedColors.LightestHsb.ToColor();
             this.pictureBoxMain.DataBindings.Add(
                 new Binding(
                     nameof(this.pictureBoxMain.Image),
