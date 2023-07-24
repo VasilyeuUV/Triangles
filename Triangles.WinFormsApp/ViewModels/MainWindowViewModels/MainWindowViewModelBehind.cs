@@ -37,14 +37,12 @@ namespace Triangles.ViewModels.MainWindowViewModels
                 InitAllowedColors(inputData.Coordinates.Count());
 
                 var orderedTriangles = GeometryService.GetTriangles(inputData.Coordinates);
+
                 var commonMatrix = GetCommonMatrix(orderedTriangles);
                 if (commonMatrix == null)
                     throw new InvalidDataException("Common matrix is null");
+                NestingLevelMax = GetMaxNestingLevel(commonMatrix).ToString();
 
-                NestingLevelMax = commonMatrix
-                    .Cast<int>()
-                    .Max()
-                    .ToString();
 
                 Bitmap bitmap = new Bitmap(_BITMAP_WIDTH_MAX, _BITMAP_HEIGHT_MAX);
                 using (Graphics g = Graphics.FromImage(bitmap))
@@ -59,15 +57,29 @@ namespace Triangles.ViewModels.MainWindowViewModels
             {
                 UserDialogService.ShowError(strings.ErrMsgOpenFileTitle, ex.Message);
                 NestingLevelMax = strings.Error;
+                Bitmap = new Bitmap(_BITMAP_WIDTH_MAX, _BITMAP_HEIGHT_MAX);
             }
             catch (Exception ex)
             {
                 UserDialogService.ShowError(strings.ErrMsgTitle, ex.Message);
                 NestingLevelMax = strings.Error;
+                Bitmap = new Bitmap(_BITMAP_WIDTH_MAX, _BITMAP_HEIGHT_MAX);
             }
         }
 
 
+        /// <summary>
+        /// Получение уровня вложенности
+        /// </summary>
+        /// <param name="commonMatrix"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        private int GetMaxNestingLevel(int[,] commonMatrix)
+        {
+            return commonMatrix
+                .Cast<int>()
+                .Max();                              
+        }
 
         private int[,] GetCommonMatrix(IEnumerable<TriangleModel> orderedTriangles)
         {
@@ -78,13 +90,14 @@ namespace Triangles.ViewModels.MainWindowViewModels
             int maxLevel = 0;
             foreach (var triangle in orderedTriangles)
             {
-                SummArray(commonMatrix, triangle.BitmapMask);
+                SummArray(commonMatrix, triangle);
                 maxLevel = commonMatrix.Cast<int>().Max();
-                triangle.FillColor = AllowedColors?.UsedColors?[maxLevel - 1];
+                triangle.FillColor = AllowedColors?.UsedColors?[triangle.NestingLevel - 1];
             }
 
             return commonMatrix;
         }
+
 
         private void SummArray(int[,] commonMatrix, int[,] bitmapMask)
         {
@@ -96,6 +109,19 @@ namespace Triangles.ViewModels.MainWindowViewModels
         }
 
 
+        private void SummArray(int[,] commonMatrix, TriangleModel triangle)
+        {
+            var triangleNestingLevel = GetMaxNestingLevel(triangle.BitmapMask);
+            for (int i = 0; i < triangle.BitmapMask.GetLength(0); i++)
+                for (int j = 0; j < triangle.BitmapMask.GetLength(1); j++)
+                {
+                    commonMatrix[i, j] += triangle.BitmapMask[i, j];
+                    if (triangle.BitmapMask[i, j] != 0
+                        && commonMatrix[i, j] > triangleNestingLevel)
+                        triangleNestingLevel = commonMatrix[i, j];
+                }
+            triangle.NestingLevel = triangleNestingLevel;
+        }
 
 
 

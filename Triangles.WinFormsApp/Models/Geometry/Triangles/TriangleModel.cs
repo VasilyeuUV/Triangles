@@ -14,6 +14,8 @@ namespace Triangles.Models.Geometry.Triangles
         private Point _triangleApexB;
         private Point _triangleApexC;
 
+        
+
 
         /// <summary>
         /// CTOR
@@ -65,8 +67,7 @@ namespace Triangles.Models.Geometry.Triangles
                     _triangleApexC = new Point((Size)Coordinates[2]);
                 return _triangleApexC;
             }
-        }
-
+        }        
 
 
         //####################################################################################################################
