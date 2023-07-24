@@ -47,7 +47,7 @@ namespace Triangles.WinFormsApp
                 );
 
 
-            this.pictureBoxMain.BackColor = Color.FromArgb(205, 255, 204);
+            this.pictureBoxMain.BackColor = _dataSource.AllowedColors.LightestColor;
             this.pictureBoxMain.DataBindings.Add(
                 new Binding(
                     nameof(this.pictureBoxMain.Image),

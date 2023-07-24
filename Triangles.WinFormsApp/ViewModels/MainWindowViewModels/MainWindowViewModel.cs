@@ -40,6 +40,13 @@ namespace Triangles.ViewModels.MainWindowViewModels
 
 
         /// <summary>
+        /// Допустимые к использованию цвета
+        /// </summary>
+        public AllowedColors? AllowedColors => _allowedColors;
+
+
+
+        /// <summary>
         /// Максимальный уровень вложенности
         /// </summary>
         public string? NestingLevelMax
@@ -66,5 +73,6 @@ namespace Triangles.ViewModels.MainWindowViewModels
 
 
         public IUserDialog UserDialogService => _userDialogService;
+
     }
 }

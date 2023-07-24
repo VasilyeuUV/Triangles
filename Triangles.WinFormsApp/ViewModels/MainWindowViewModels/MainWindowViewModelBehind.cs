@@ -79,7 +79,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
             {
                 SummArray(commonMatrix, triangle.BitmapMask);
                 maxLevel = commonMatrix.Cast<int>().Max();
-                triangle.FillColor = HsbToRgb(_allowedColors.UsedColors[maxLevel - 1]);
+                triangle.FillColor = HsbToRgb(AllowedColors.UsedColors[maxLevel - 1]);
             }
 
             return commonMatrix;
@@ -87,28 +87,285 @@ namespace Triangles.ViewModels.MainWindowViewModels
 
 
 
-
         private Color? HsbToRgb(HsbColorModel hsbColorModel)
         {
-            int hi = (int)Math.Floor(hsbColorModel.Hue / 60.0) % 6;
-            double f = hsbColorModel.Hue / 60 - Math.Floor((double)hsbColorModel.Hue / 60);
+            //int hi = (int)Math.Floor(hsbColorModel.Hue / 60.0) % 6;
+            //double f = hsbColorModel.Hue / 60 - Math.Floor((double)hsbColorModel.Hue / 60);
 
-            var value = hsbColorModel.Brightness * 255;
-            int v = Convert.ToInt32(value);
-            int p = Convert.ToInt32(value * (1 - hsbColorModel.Saturation));
-            int q = Convert.ToInt32(value * (1 - f * hsbColorModel.Saturation));
-            int t = Convert.ToInt32(value * (1 - (1 - f) * hsbColorModel.Saturation));
+            //var value = hsbColorModel.Brightness * 255;
+            //int v = Convert.ToInt32(value);
+            //int p = Convert.ToInt32(value * (1 - hsbColorModel.Saturation));
+            //int q = Convert.ToInt32(value * (1 - f * hsbColorModel.Saturation));
+            //int t = Convert.ToInt32(value * (1 - (1 - f) * hsbColorModel.Saturation));
 
-            return hi switch
-            {
-                0 => Color.FromArgb(255, v, t, p),
-                1 => Color.FromArgb(255, q, v, p),
-                2 => Color.FromArgb(255, p, v, t),
-                3 => Color.FromArgb(255, p, q, v),
-                4 => Color.FromArgb(255, t, p, v),
-                _ => Color.FromArgb(255, v, p, q),
-            };
+            //return hi switch
+            //{
+            //    0 => Color.FromArgb(255, v, t, p),
+            //    1 => Color.FromArgb(255, q, v, p),
+            //    2 => Color.FromArgb(255, p, v, t),
+            //    3 => Color.FromArgb(255, p, q, v),
+            //    4 => Color.FromArgb(255, t, p, v),
+            //    _ => Color.FromArgb(255, v, p, q),
+            //};
+
+            //return HSBtoRGB(hsbColorModel.Hue, hsbColorModel.Saturation, hsbColorModel.Brightness);
+            return FromAhsv(255, hsbColorModel.Hue, hsbColorModel.Saturation, hsbColorModel.Brightness);
         }
+
+
+        public Color FromAhsv(byte alpha, float hue, float saturation, float value)
+        {
+            if (hue < 0f || hue > 360f)
+                throw new ArgumentOutOfRangeException(nameof(hue), hue, "Hue must be in the range [0,360]");
+            if (saturation < 0f || saturation > 1f)
+                throw new ArgumentOutOfRangeException(nameof(saturation), saturation, "Saturation must be in the range [0,1]");
+            if (value < 0f || value > 1f)
+                throw new ArgumentOutOfRangeException(nameof(value), value, "Value must be in the range [0,1]");
+
+            int Component(int n)
+            {
+                var k = (n + hue / 60f) % 6;
+                var c = value - value * saturation * Math.Max(Math.Min(Math.Min(k, 4 - k), 1), 0);
+                var b = (int)Math.Round(c * 255);
+                return b < 0 ? 0 : b > 255 ? 255 : b;
+            }
+
+            return Color.FromArgb(alpha, Component(5), Component(3), Component(1));
+        }
+
+
+
+        //public static Color HSBtoRGB(float hue, float saturation, float brightness)
+        //{
+        //    int r = 0, g = 0, b = 0;
+        //    if (saturation == 0)
+        //    {
+        //        r = g = b = (int)(brightness * 255.0f + 0.5f);
+        //    }
+        //    else
+        //    {
+        //        float h = (hue - (float)Math.Floor(hue)) * 6.0f;
+        //        float f = h - (float)Math.Floor(h);
+        //        float p = brightness * (1.0f - saturation);
+        //        float q = brightness * (1.0f - saturation * f);
+        //        float t = brightness * (1.0f - (saturation * (1.0f - f)));
+        //        switch ((int)h)
+        //        {
+        //            case 0:
+        //                r = (int)(brightness * 255.0f + 0.5f);
+        //                g = (int)(t * 255.0f + 0.5f);
+        //                b = (int)(p * 255.0f + 0.5f);
+        //                break;
+        //            case 1:
+        //                r = (int)(q * 255.0f + 0.5f);
+        //                g = (int)(brightness * 255.0f + 0.5f);
+        //                b = (int)(p * 255.0f + 0.5f);
+        //                break;
+        //            case 2:
+        //                r = (int)(p * 255.0f + 0.5f);
+        //                g = (int)(brightness * 255.0f + 0.5f);
+        //                b = (int)(t * 255.0f + 0.5f);
+        //                break;
+        //            case 3:
+        //                r = (int)(p * 255.0f + 0.5f);
+        //                g = (int)(q * 255.0f + 0.5f);
+        //                b = (int)(brightness * 255.0f + 0.5f);
+        //                break;
+        //            case 4:
+        //                r = (int)(t * 255.0f + 0.5f);
+        //                g = (int)(p * 255.0f + 0.5f);
+        //                b = (int)(brightness * 255.0f + 0.5f);
+        //                break;
+        //            case 5:
+        //                r = (int)(brightness * 255.0f + 0.5f);
+        //                g = (int)(p * 255.0f + 0.5f);
+        //                b = (int)(q * 255.0f + 0.5f);
+        //                break;
+        //        }
+        //    }
+        //    return Color.FromArgb(Convert.ToByte(255), Convert.ToByte(r), Convert.ToByte(g), Convert.ToByte(b));
+        //}
+
+
+
+        //public static Color HsbToRgb(HsbColorModel hsbColorModel) 
+        //{ 
+        //    //if (0 > a || 255 < a)
+        //    //{ 
+        //    //    throw new ArgumentOutOfRangeException("a", a, Properties.Resources.InvalidAlpha); 
+        //    //}
+
+        //    //if (0f > h || 360f < h) 
+        //    //{ 
+        //    //    throw new ArgumentOutOfRangeException("h", h, Properties.Resources.InvalidHue); 
+        //    //} 
+
+        //    //if (0f > s || 1f < s) 
+        //    //{
+        //    //    throw new ArgumentOutOfRangeException("s", s, Properties.Resources.InvalidSaturation); 
+        //    //}
+
+        //    //if (0f > b || 1f < b) 
+        //    //{ 
+        //    //    throw new ArgumentOutOfRangeException("b", b, Properties.Resources.InvalidBrightness); 
+        //    //} 
+
+        //    //if (0 == s) 
+        //    //{
+        //    //    return Color.FromArgb(a, Convert.ToInt32(b * 255), Convert.ToInt32(b * 255), Convert.ToInt32(b * 255)); 
+        //    //} 
+
+        //    float fMax, fMid, fMin; 
+        //    int iSextant, iMax, iMid, iMin;
+
+        //    int a = 255;
+        //    float h = hsbColorModel.Hue;
+        //    float s = hsbColorModel.Saturation;
+        //    float b = hsbColorModel.Brightness;
+
+        //    if (0.5 < b) 
+        //    {
+        //        fMax = b - (b * s) + s;
+        //        fMin = b + (b * s) - s; 
+        //    } 
+        //    else 
+        //    {
+        //        fMax = b + (b * s); 
+        //        fMin = b - (b * s); }
+        //    iSextant = (int)Math.Floor(h / 60f);
+
+        //    if (300f <= h) 
+        //    {
+        //        h -= 360f; 
+        //    }
+
+        //    h /= 60f; 
+        //    h -= 2f * (float)Math.Floor(((iSextant + 1f) % 6f) / 2f);
+
+        //    if (0 == iSextant % 2)
+        //    {
+        //        fMid = h * (fMax - fMin) + fMin;
+        //    } 
+        //    else
+        //    { 
+        //        fMid = fMin - h * (fMax - fMin);
+        //    } 
+
+        //    iMax = Convert.ToInt32(fMax * 255);
+        //    iMid = Convert.ToInt32(fMid * 255);
+        //    iMin = Convert.ToInt32(fMin * 255); 
+
+        //    switch (iSextant) 
+        //    { 
+        //        case 1: return Color.FromArgb(a, iMid, iMax, iMin); 
+        //        case 2: return Color.FromArgb(a, iMin, iMax, iMid);
+        //        case 3: return Color.FromArgb(a, iMin, iMid, iMax);
+        //        case 4: return Color.FromArgb(a, iMid, iMin, iMax); 
+        //        case 5: return Color.FromArgb(a, iMax, iMin, iMid);
+        //        default: return Color.FromArgb(a, iMax, iMid, iMin);
+        //    } 
+        //}
+
+
+
+        ///// <summary>
+        ///// Converts to RGB.
+        ///// </summary>
+        ///// <param name="hsb">The HSB.</param>
+        ///// <returns></returns>
+        //internal static Color? ConvertToRGB(HsbColorModel hsb)
+        //{
+        //    double chroma = hsb.Saturation * hsb.Brightness;
+        //    double hue2 = hsb.Hue / 60;
+        //    double x = chroma * (1 - Math.Abs(hue2 % 2 - 1));
+        //    double r1 = 0d;
+        //    double g1 = 0d;
+        //    double b1 = 0d;
+
+        //    if (hue2 >= 0 && hue2 < 1)
+        //    {
+        //        r1 = chroma;
+        //        g1 = x;
+        //    }
+        //    else if (hue2 >= 1 && hue2 < 2)
+        //    {
+        //        r1 = x;
+        //        g1 = chroma;
+        //    }
+        //    else if (hue2 >= 2 && hue2 < 3)
+        //    {
+        //        g1 = chroma;
+        //        b1 = x;
+        //    }
+        //    else if (hue2 >= 3 && hue2 < 4)
+        //    {
+        //        g1 = x;
+        //        b1 = chroma;
+        //    }
+        //    else if (hue2 >= 4 && hue2 < 5)
+        //    {
+        //        r1 = x;
+        //        b1 = chroma;
+        //    }
+        //    else if (hue2 >= 5 && hue2 <= 6)
+        //    {
+        //        r1 = chroma;
+        //        b1 = x;
+        //    }
+
+        //    double m = hsb.Brightness - chroma;
+
+        //    return Color.FromArgb(r1 + m, g1 + m, b1 + m);
+        //    //{                
+        //    //    R = r1 + m,
+        //    //    G = g1 + m,
+        //    //    B = b1 + m
+        //    //});
+        //}
+
+
+        //private Color? HsbToRgb(HsbColorModel hsbColorModel)
+        //{
+        //    if (hsbColorModel.Hue == 0)
+        //        return Color.FromArgb(hsbColorModel.Brightness, hsbColorModel.Brightness, hsbColorModel.Brightness);
+        //}
+
+        //public static void ConvertHSBToRGB(float h, float s, float v, out float r, out float g, out float b)
+        //{
+        //    if (s == 0f)
+        //    {
+        //        // if s = 0 then h is undefined
+        //        r = v;
+        //        g = v;
+        //        b = v;
+        //    }
+        //    else
+        //    {
+        //        float hue = (float)h;
+        //        if (h == 360.0f)
+        //        {
+        //            hue = 0.0f;
+        //        }
+        //        hue /= 60.0f;
+        //        int i = (int)Math.Floor((double)hue);
+        //        float f = hue - i;
+        //        float p = v * (1.0f - s);
+        //        float q = v * (1.0f - (s * f));
+        //        float t = v * (1.0f - (s * (1 - f)));
+
+        //        switch (i)
+        //        {
+        //            case 0: r = v; g = t; b = p; break;
+        //            case 1: r = q; g = v; b = p; break;
+        //            case 2: r = p; g = v; b = t; break;
+        //            case 3: r = p; g = q; b = v; break;
+        //            case 4: r = t; g = p; b = v; break;
+        //            case 5: r = v; g = p; b = q; break;
+
+        //            default: r = 0.0f; g = 0.0f; b = 0.0f; break; /*Trace.Assert(false);*/ // hue out of range
+        //        }
+        //    }
+        //}
 
 
 
@@ -133,7 +390,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// <exception cref="NotImplementedException"></exception>
         private void InitAllowedColors(int count)
         {
-            _allowedColors = new AllowedColors()
+            AllowedColors = new AllowedColors()
             {
                 LightestColor = new HsbColorModel
                 {
@@ -148,7 +405,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
                     Brightness = 0.3f,
                 }
             };
-            _allowedColors.UsedColors = SelectColors(count)?.ToArray();
+            AllowedColors.UsedColors = SelectColors(count)?.ToArray();
         }
 
 
@@ -160,7 +417,7 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// <exception cref="NotImplementedException"></exception>
         private IEnumerable<HsbColorModel>? SelectColors(int count)
         {
-            var hueDiap = _allowedColors?.DarkestColor?.Hue - _allowedColors?.LightestColor?.Hue;
+            var hueDiap = AllowedColors?.DarkestColor?.Hue - AllowedColors?.LightestColor?.Hue;
             if (hueDiap == null
                 || hueDiap < 1
                 )
@@ -169,13 +426,13 @@ namespace Triangles.ViewModels.MainWindowViewModels
             var propertiesCount = typeof(HsbColorModel).GetProperties().Count();
             var percentStep = Math.Round((float)(hueDiap / count * 100M / hueDiap) * propertiesCount, 2);
 
-            int hue = _allowedColors?.LightestColor?.Hue ?? 0;
-            float saturation = _allowedColors?.LightestColor?.Saturation ?? 0f;
-            float brightness = _allowedColors?.LightestColor?.Brightness ?? 0f;
+            int hue = AllowedColors?.LightestColor?.Hue ?? 0;
+            float saturation = AllowedColors?.LightestColor?.Saturation ?? 0f;
+            float brightness = AllowedColors?.LightestColor?.Brightness ?? 0f;
 
             var hueStep = hueDiap * percentStep / 100;
-            var saturationStep = (_allowedColors?.DarkestColor?.Saturation - _allowedColors?.LightestColor?.Saturation) * percentStep / 100 ?? 0f;
-            var brightnessStep = (_allowedColors?.DarkestColor?.Brightness - _allowedColors?.LightestColor?.Brightness) * percentStep / 100 ?? 0f;
+            var saturationStep = (AllowedColors?.DarkestColor?.Saturation - AllowedColors?.LightestColor?.Saturation) * percentStep / 100 ?? 0f;
+            var brightnessStep = (AllowedColors?.DarkestColor?.Brightness - AllowedColors?.LightestColor?.Brightness) * percentStep / 100 ?? 0f;
 
             List<HsbColorModel> usedColors = new List<HsbColorModel>();
             for (int i = 0, j = 1; i < count; i++)
