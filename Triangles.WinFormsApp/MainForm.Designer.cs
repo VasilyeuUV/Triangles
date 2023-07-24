@@ -119,12 +119,12 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSize = true;
             ClientSize = new Size(778, 444);
             Controls.Add(pictureBoxMain);
             Controls.Add(panelMessage);
             Controls.Add(mainMenu);
             MainMenuStrip = mainMenu;
+            MinimumSize = new Size(300, 200);
             Name = "MainForm";
             Text = "U.Vasilyeu AxxonSoft test task";
             Load += Form1_Load;

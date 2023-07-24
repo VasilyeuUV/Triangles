@@ -117,4 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrMsgOpenFileTitle" xml:space="preserve">
+    <value>Ошибка открытия файла</value>
+  </data>
+  <data name="ErrMsgTitle" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>ERROR</value>
+  </data>
+  <data name="InvalidInputData" xml:space="preserve">
+    <value>Некорректные входные данные</value>
+  </data>
+  <data name="SelectTrianglesCoordsFile" xml:space="preserve">
+    <value>Выберите файл с координатами треугольников</value>
+  </data>
 </root>

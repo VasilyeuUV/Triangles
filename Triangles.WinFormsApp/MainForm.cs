@@ -1,35 +1,60 @@
 using Triangles.ViewModels.MainWindowViewModels;
+using Triangles.WinFormsApp.Properties;
 
 namespace Triangles.WinFormsApp
 {
     public partial class MainForm : Form
     {
+        private readonly MainWindowViewModel _dataSource;
+
+
+        /// <summary>
+        /// CTOR
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
 
-            var dataSource = new MainWindowViewModel();
+            this._dataSource = new MainWindowViewModel();
+            AddBindings();
+        }
 
-            this.DataContext = dataSource;
+
+        /// <summary>
+        /// Настройка связей
+        /// </summary>
+        private void AddBindings()
+        {
+            this.DataContext = _dataSource;
             this.lblMessage.DataBindings.Add(
                 new Binding(
                     nameof(this.lblMessage.Text),
-                    dataSource,
-                    nameof(dataSource.NestingLevelMax),
+                    _dataSource,
+                    nameof(_dataSource.NestingLevelMax),
                     false,
                     DataSourceUpdateMode.OnPropertyChanged
                     )
                 );
-            int count = 1;
-            this.menuItemLoad.Click += (o, e) => dataSource.NestingLevelMax = $"{++count}";
+
+
+            this.menuItemLoad.DataBindings.Add(
+                new Binding(
+                    nameof(this.menuItemLoad.Command),
+                    _dataSource,
+                    nameof(_dataSource.OpenFileCommand),
+                    true
+                    )
+                );
 
 
             this.pictureBoxMain.BackColor = Color.FromArgb(205, 255, 204);
             this.pictureBoxMain.DataBindings.Add(
                 new Binding(
                     nameof(this.pictureBoxMain.Image),
-                    dataSource,
-                    nameof(dataSource.Bitmap)
+                    _dataSource,
+                    nameof(_dataSource.Bitmap),
+                    false,
+                    DataSourceUpdateMode.OnPropertyChanged
                     )
                 );
         }
@@ -45,8 +70,6 @@ namespace Triangles.WinFormsApp
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
         }
 
 

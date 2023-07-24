@@ -1,6 +1,7 @@
-﻿using System.Drawing;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using Triangles.Models.ColorModels;
 using Triangles.ViewModels.Commands;
+using Triangles.WinFormsApp.Services.UserDialogServices;
 
 namespace Triangles.ViewModels.MainWindowViewModels
 {
@@ -9,10 +10,18 @@ namespace Triangles.ViewModels.MainWindowViewModels
     /// </summary>
     public partial class MainWindowViewModel : AViewModelBase
     {
+        private const int _BITMAP_WIDTH_MAX = 1000;
+        private const int _BITMAP_HEIGHT_MAX = 1000;
+
+
         private string? _nestingLevelMax;
-        private Bitmap? _bitmap = new Bitmap(300, 300);
+        private Bitmap? _bitmap;
+        private AllowedColors? _allowedColors;
 
         private readonly AsyncCommand _openFileCommand;          // - команда открытия файла 
+
+        private readonly IUserDialog _userDialogService;
+        //private readonly IGeometryService _geometryService; 
 
 
         /// <summary>
@@ -20,7 +29,13 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// </summary>
         public MainWindowViewModel()
         {
-            _openFileCommand = new AsyncCommand(GetTrianglesCoordsAsync);
+            this._bitmap = new Bitmap(_BITMAP_WIDTH_MAX, _BITMAP_HEIGHT_MAX);
+            this._allowedColors = new AllowedColors();
+
+            this._userDialogService = new UserDialogService();
+
+            this._openFileCommand = new AsyncCommand(GetTrianglesCoordsAsync);
+
         }
 
 
@@ -37,17 +52,10 @@ namespace Triangles.ViewModels.MainWindowViewModels
         /// <summary>
         /// 
         /// </summary>
-        public Bitmap? Bitmap
+        public Bitmap Bitmap
         {
-            get
-            {
-                using (Graphics g = Graphics.FromImage(_bitmap))
-                {
-                    g.Clear(Color.Transparent);
-                    g.DrawLine(Pens.Black, 10, 10, 140, 140);
-                }
-                return _bitmap;
-            }
+            get => _bitmap;
+            set => Set(ref _bitmap, value);
         }
 
 
@@ -57,6 +65,6 @@ namespace Triangles.ViewModels.MainWindowViewModels
         public ICommand OpenFileCommand => _openFileCommand;
 
 
-
+        public IUserDialog UserDialogService => _userDialogService;
     }
 }
